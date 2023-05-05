@@ -68,17 +68,17 @@ const SearchResults = ({
               {playlists && (
                 <img
                   className="h-28 w-28 rounded"
-                  src={playlists[0].images[0]?.url}
+                  src={playlists[0]?.images[0]?.url}
                 />
               )}
               {playlists && (
                 <p className="text-3xl text-white font-bold">
-                  {playlists[0].name}
+                  {playlists[0]?.name}
                 </p>
               )}
               {playlists && (
                 <p className="text-sm text-neutral-400">
-                  By {playlists[0].owner.display_name}{" "}
+                  By {playlists[0]?.owner.display_name}{" "}
                   <span className="rounded-full bg-neutral-900 text-white font-bold ml-4 py-1 px-4">
                     Playlist
                   </span>
@@ -101,12 +101,12 @@ const SearchResults = ({
                   <div>
                     <p className="text-white text-sm">{song.name}</p>
                     <p className="text-sm text-neutral-400">
-                      {song.artists[0].name}
+                      {song?.artists[0].name}
                     </p>
                   </div>
                   <div className="flex-grow flex items-center justify-end">
                     <p className="text-sm text-neutral-400">
-                      {millisToMinutesAndSeconds(song.duration_ms)}
+                      {millisToMinutesAndSeconds(song?.duration_ms)}
                     </p>
                   </div>
                 </div>

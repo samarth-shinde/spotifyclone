@@ -53,8 +53,9 @@ export default function Favourites() {
         className="relative -top-20 h-screen overflow-y-scroll bg-neutral-900"
       >
         <div className="text-white px-8 flex flex-col space-y-1 pb-28">
-          {favourites?.items.map((track, i) => {
+          {favourites?.items?.map((track, i) => {
             // song component
+            console.log(track);
             return (
               <Song
                 setView={setView}
