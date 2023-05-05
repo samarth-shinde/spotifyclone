@@ -1,18 +1,19 @@
-import Artist from "@/components/Artist"
-import Library from "@/components/Library"
-import Player from "@/components/Player"
-import PlaylistView from "@/components/PlaylistView"
-import Search from "@/components/Search"
-import Sidebar from "@/components/Sidebar"
-import { useSession } from "next-auth/react"
-import { useEffect, useState } from "react"
+import Artist from "@/components/Artist";
+import Library from "@/components/Library";
+import Player from "@/components/Player";
+import PlaylistView from "@/components/PlaylistView";
+import Search from "@/components/Search";
+import Sidebar from "@/components/Sidebar";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Favourites from "@/components/Favourites";
 
 export default function Home() {
-  const [view, setView] = useState("search") // ["search", "library", "playlist", "artist"]
-  const [globalPlaylistId, setGlobalPlaylistId] = useState(null)
-  const [globalArtistId, setGlobalArtistId] = useState(null)
-  const [globalCurrentSongId, setGlobalCurrentSongId] = useState(null)
-  const [globalIsTrackPlaying, setGlobalIsTrackPlaying] = useState(false)
+  const [view, setView] = useState("search"); // ["search", "library", "playlist", "artist", "favourites"]
+  const [globalPlaylistId, setGlobalPlaylistId] = useState(null);
+  const [globalArtistId, setGlobalArtistId] = useState(null);
+  const [globalCurrentSongId, setGlobalCurrentSongId] = useState(null);
+  const [globalIsTrackPlaying, setGlobalIsTrackPlaying] = useState(false);
 
   return (
     <>
@@ -23,31 +24,48 @@ export default function Home() {
             setView={setView}
             setGlobalPlaylistId={setGlobalPlaylistId}
           />
-          {view === "playlist" && <PlaylistView
-            setView={setView}
-            setGlobalArtistId={setGlobalArtistId}
-            globalPlaylistId={globalPlaylistId}
-            setGlobalCurrentSongId={setGlobalCurrentSongId}
-            setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
-          />}
-          {view === "search" && <Search
-            setView={setView}
-            setGlobalPlaylistId={setGlobalPlaylistId}
-            setGlobalCurrentSongId={setGlobalCurrentSongId}
-            setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
-            setGlobalArtistId={setGlobalArtistId}
-          />}
-          {view === "library" && <Library
-            setView={setView}
-            setGlobalPlaylistId={setGlobalPlaylistId}
-          />}
-          {view === "artist" && <Artist
-            setView={setView}
-            globalArtistId={globalArtistId}
-            setGlobalArtistId={setGlobalArtistId}
-            setGlobalCurrentSongId={setGlobalCurrentSongId}
-            setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
-          />}
+          {view === "playlist" && (
+            <PlaylistView
+              setView={setView}
+              setGlobalArtistId={setGlobalArtistId}
+              globalPlaylistId={globalPlaylistId}
+              setGlobalCurrentSongId={setGlobalCurrentSongId}
+              setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
+            />
+          )}
+          {view === "search" && (
+            <Search
+              setView={setView}
+              setGlobalPlaylistId={setGlobalPlaylistId}
+              setGlobalCurrentSongId={setGlobalCurrentSongId}
+              setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
+              setGlobalArtistId={setGlobalArtistId}
+            />
+          )}
+          {view === "library" && (
+            <Library
+              setView={setView}
+              setGlobalPlaylistId={setGlobalPlaylistId}
+            />
+          )}
+          {view === "artist" && (
+            <Artist
+              setView={setView}
+              globalArtistId={globalArtistId}
+              setGlobalArtistId={setGlobalArtistId}
+              setGlobalCurrentSongId={setGlobalCurrentSongId}
+              setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
+            />
+          )}
+          {view === "favourites" && (
+            <Favourites
+              setView={setView}
+              globalArtistId={globalArtistId}
+              setGlobalArtistId={setGlobalArtistId}
+              setGlobalCurrentSongId={setGlobalCurrentSongId}
+              setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
+            />
+          )}
         </div>
         <div className="sticky z-20 bottom-0 w-full">
           <Player
@@ -58,7 +76,6 @@ export default function Home() {
           />
         </div>
       </main>
-
     </>
-  )
+  );
 }
