@@ -133,7 +133,7 @@ const Artist = ({
           )}
           <div>
             <p className="text-sm font-bold">Artist</p>
-            <h1 className="text-2xl md:text-3xl lg:text-5xl font-extrabold">
+            <h1 className="text-2xl text-white md:text-3xl lg:text-5xl font-extrabold">
               {artistData?.name}
             </h1>
           </div>

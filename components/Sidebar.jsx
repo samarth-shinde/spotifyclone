@@ -83,7 +83,7 @@ const Sidebar = ({ view, setView, setGlobalPlaylistId }) => {
           <p>Liked Songs</p>
         </button>
         <hr className="border-neutral-900" />
-        {playlists.map((playlist) => {
+        {playlists?.map((playlist) => {
           return (
             <p
               onClick={() => {

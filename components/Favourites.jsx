@@ -2,7 +2,12 @@ import { useSession } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import Song from "./Song";
 import Profile from "./Profile";
-export default function Favourites() {
+export default function Favourites({
+  setView,
+  setGlobalArtistId,
+  setGlobalIsTrackPlaying,
+  setGlobalCurrentSongId
+}) {
   const { data: session } = useSession();
   const [favourites, setFavourites] = useState([]);
   //   const [opacity, setOpacity] = useState(0);
@@ -38,7 +43,6 @@ export default function Favourites() {
           }
         );
         const data = await response.json();
-        console.log(data.items);
         setFavourites(data.items);
       }
     }
@@ -48,26 +52,21 @@ export default function Favourites() {
   return (
     <div>
       <Profile />
-      <div
-        onScroll={(e) => changeOpacity(e.target.scrollTop)}
-        className="relative -top-20 h-screen overflow-y-scroll bg-neutral-900"
-      >
+      <div className="relative-top-20 h-screen overflow-y-scroll w-screen bg-neutral-900">
         <div className="text-white px-8 flex flex-col space-y-1 pb-28">
-          {favourites?.items?.map((track, i) => {
+          {favourites?.map((track, i) => (
             // song component
-            console.log(track);
-            return (
-              <Song
-                setView={setView}
-                setGlobalArtistId={setGlobalArtistId}
-                setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
-                setGlobalCurrentSongId={setGlobalCurrentSongId}
-                key={track.track.id}
-                sno={i}
-                track={track.track}
-              />
-            );
-          })}
+
+            <Song
+              setView={setView}
+              setGlobalArtistId={setGlobalArtistId}
+              setGlobalIsTrackPlaying={setGlobalIsTrackPlaying}
+              setGlobalCurrentSongId={setGlobalCurrentSongId}
+              key={track.id}
+              sno={i}
+              track={track}
+            />
+          ))}
         </div>
       </div>
     </div>
