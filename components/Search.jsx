@@ -48,8 +48,10 @@ const Search = ({
         <input
           value={inputValue}
           onChange={async (e) => {
-            setInputValue(e.target.value);
-            await updateSearchResults(e.target.value);
+            if (e.target.value) {
+              setInputValue(e.target.value);
+              await updateSearchResults(e.target.value);
+            }
           }}
           ref={inputRef}
           className="rounded-full bg-white w-96 pl-12 text-neutral-900 text-base py-2 font-normal outline-0"
