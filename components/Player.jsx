@@ -152,7 +152,7 @@ const Player = ({
   }, [globalCurrentSongId]);
 
   return (
-    <div className="h-24 bg-neutral-800 border-t border-neutral-700 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
+    <div className="h-20 bg-neutral-800 border-t border-neutral-700 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
       <div className="flex items-center space-x-4">
         {songInfo?.album.images[0].url && (
           <img
@@ -170,21 +170,26 @@ const Player = ({
       <div className="flex items-center justify-center">
         <BackwardIcon
           onClick={async () => await handleSkip("backward")}
-          name="backword"
-          className="h-6 w-6 transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+          className="h-6 w-6 mx-10 transition duration-200 ease-in-out hover:scale-150"
         />
+
         {globalIsTrackPlaying ? (
-          <PauseCircleIcon onClick={handlePlayPause} className="h-10 w-10" />
+          <PauseCircleIcon
+            onClick={handlePlayPause}
+            className="h-10 w-10 transition duration-300 ease-in-out hover:scale-150"
+          />
         ) : (
-          <PlayCircleIcon onClick={handlePlayPause} className="h-10 w-10" />
+          <PlayCircleIcon
+            onClick={handlePlayPause}
+            className="h-10 w-10 transition duration-300 ease-in-out hover:scale-150"
+          />
         )}
+
         <ForwardIcon
           onClick={async () => await handleSkip("forward")}
-          className="h-6 w-6 "
-          name="forward"
+          className="h-6 w-6 mx-10 transition duration-300 ease-in-out hover:scale-150"
         />
       </div>
-      <div></div>
     </div>
   );
 };
